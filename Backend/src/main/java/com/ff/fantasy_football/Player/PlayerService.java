@@ -45,9 +45,9 @@ public class PlayerService {
      * @return List of players whose names contain the specified name
      */
     public List<Player> getPlayerByName(String playerName) {
-        return playerRep.findAll().stream().filter(player -> playerName.toLowerCase().contains(player.getName().toLowerCase())).collect(Collectors.toList());
+        return playerRep.findAll().stream().filter(player -> player.getName().toLowerCase().contains(playerName.toLowerCase())).collect(Collectors.toList());
     }
-
+    
     /**
      * Allow user to add a player to the database if needed ex. adding rookies
      * @param player The player to be added
