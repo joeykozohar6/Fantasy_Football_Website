@@ -1,5 +1,3 @@
-
-
 package com.ff.fantasy_football.Player;
 
 import jakarta.persistence.*;
@@ -28,8 +26,8 @@ public class DST extends Player {
     }
 
     // Parameterized constructor
-    public DST(String name, String position, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Integer sacks, Integer fumblesRecovered, Integer fumblesForced, Integer defensiveTouchdowns, Integer safeties, Integer specialTeamTouchdowns) {
-        super(name, position, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
+    public DST(String name, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Integer sacks, Integer fumblesRecovered, Integer fumblesForced, Integer defensiveTouchdowns, Integer safeties, Integer specialTeamTouchdowns) {
+        super(name, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
         this.sacks = sacks;
         this.fumblesRecovered = fumblesRecovered;
         this.fumblesForced = fumblesForced;

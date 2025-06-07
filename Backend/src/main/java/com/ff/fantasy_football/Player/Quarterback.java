@@ -27,8 +27,8 @@ public class Quarterback extends Player {
     }
 
     // Parameterized constructor
-    public Quarterback(String name, String position, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Double passingCompletions, Double passingAttempts, Double completionPercentage, Double passingYards, Double passingYardsPerAttempt, Double passingTouchdowns, Double interceptionsThrown, Double sacksTaken, Double rushingAttempts, Double rushingYards, Double rushingTouchdowns, Double fumblesLost) {
-        super(name, position, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
+    public Quarterback(String name, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Double passingCompletions, Double passingAttempts, Double completionPercentage, Double passingYards, Double passingYardsPerAttempt, Double passingTouchdowns, Double interceptionsThrown, Double sacksTaken, Double rushingAttempts, Double rushingYards, Double rushingTouchdowns, Double fumblesLost) {
+        super(name, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
         this.passingCompletions = passingCompletions;
         this.passingAttempts = passingAttempts;
         this.completionPercentage = completionPercentage;

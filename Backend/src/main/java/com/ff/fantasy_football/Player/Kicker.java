@@ -41,8 +41,8 @@ public class Kicker extends Player {
     }
 
     // Parameterized constructor
-    public Kicker(String name, String position, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Integer fieldGoalsMade, Integer fieldGoalsAttempted, Double fieldGoalPercentage, Integer longestFieldGoal, Integer oneToNineteenYards, Integer twentyToTwentyNineYards, Integer thirtyToThirtyNineYards, Integer fortyToFortyNineYards, Integer longerThanFiftyYards, Integer extraPointsMade, Integer extraPointsAttempted) {
-        super(name, position, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
+    public Kicker(String name, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Integer fieldGoalsMade, Integer fieldGoalsAttempted, Double fieldGoalPercentage, Integer longestFieldGoal, Integer oneToNineteenYards, Integer twentyToTwentyNineYards, Integer thirtyToThirtyNineYards, Integer fortyToFortyNineYards, Integer longerThanFiftyYards, Integer extraPointsMade, Integer extraPointsAttempted) {
+        super(name, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
         this.fieldGoalsMade = fieldGoalsMade;
         this.fieldGoalsAttempted = fieldGoalsAttempted;
         this.fieldGoalPercentage = fieldGoalPercentage;
