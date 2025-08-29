@@ -6,7 +6,7 @@ export interface Player {
     fantasyPoints?: number;
     fantasyPointsPerGame?: number;
     percentRostered?: number;
-    // Add more fields as needed based on position
+    
 }
 
 export type Position = 'QB' | 'RB' | 'WR' | 'TE' | 'K' | 'DST'; 

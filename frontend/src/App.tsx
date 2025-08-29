@@ -11,6 +11,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -29,30 +32,31 @@ function App() {
     fetchPlayers();
   }, []);
 
-  const handleSearch = async (name: string) => {
-    if (name.trim() === "") {
-      setFilteredPlayers(players);
-      return;
-    }
+  const applyFilters = async (nextName: string, nextPos: string) => {
+    setLoading(true);
     try {
-      const results = await api.searchPlayers(name);
-      setFilteredPlayers(results);
-    } catch (err) {
-      console.error("Error searching players:", err);
+      if (!nextName.trim() && !nextPos) {
+        setFilteredPlayers(players); // nothing selected -> show all
+      } else {
+        const data = await api.getPlayers({
+          name: nextName.trim() || undefined,
+          position: nextPos || undefined,
+        });
+        setFilteredPlayers(data); // replace, don't append
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handlePositionChange = async (position: string) => {
-    if (!position) {
-      setFilteredPlayers(players);
-      return;
-    }
-    try {
-      const results = await api.getPlayersByPosition(position); 
-      setFilteredPlayers(results);
-    } catch (err) {
-      console.error("Error filtering by position:", err);
-    }
+  const handleSearch = async (val: string) => {
+    setName(val);
+    await applyFilters(val, position);
+  };
+
+  const handlePositionChange = async (pos: string) => {
+    setPosition(pos);
+    await applyFilters(name, pos);
   };
 
   return (

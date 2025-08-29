@@ -92,7 +92,10 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, loading }) => {
   );
 
   return (
-    <TableContainer component={Paper} key={`${players.length}-${players[0]?.position ?? "all"}`}>
+    <TableContainer
+      component={Paper}
+      key={`${players.length}-${players[0]?.position ?? "all"}`}
+    >
       <Table size="small">
         <TableHead>
           <TableRow>
