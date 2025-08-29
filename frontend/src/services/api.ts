@@ -36,4 +36,16 @@ export const api = {
       `${API_BASE_URL}/player/${encodeURIComponent(playerName)}`
     );
   },
+
+  getPlayers: async (opts: {
+    name?: string;
+    position?: string;
+  }): Promise<Player[]> => {
+    const { name, position } = opts;
+    const params = new URLSearchParams();
+    if (name?.trim()) params.set("name", name.trim());
+    if (position) params.set("position", position.toLowerCase());
+    const res = await axios.get(`${API_BASE_URL}/player?${params.toString()}`);
+    return res.data;
+  },
 };
