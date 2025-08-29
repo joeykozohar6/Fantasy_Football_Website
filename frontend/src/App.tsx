@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box } from '@mui/material';
-import PlayerList from './components/PlayerList';
-import SearchBar from './components/SearchBar';
-import { Player } from './types/Player';
-import { api } from './services/api';
+import React, { useState, useEffect } from "react";
+import { Container, Typography, Box } from "@mui/material";
+import PlayerList from "./components/PlayerList";
+import SearchBar from "./components/SearchBar";
+import { Player } from "./types/Player";
+import { api } from "./services/api";
 
 function App() {
   const [players, setPlayers] = useState<Player[]>([]);
@@ -19,8 +19,8 @@ function App() {
         setFilteredPlayers(data);
         setError(null);
       } catch (err) {
-        setError('Failed to fetch players');
-        console.error('Error fetching players:', err);
+        setError("Failed to fetch players");
+        console.error("Error fetching players:", err);
       } finally {
         setLoading(false);
       }
@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   const handleSearch = async (name: string) => {
-    if (name.trim() === '') {
+    if (name.trim() === "") {
       setFilteredPlayers(players);
       return;
     }
@@ -38,20 +38,20 @@ function App() {
       const results = await api.searchPlayers(name);
       setFilteredPlayers(results);
     } catch (err) {
-      console.error('Error searching players:', err);
+      console.error("Error searching players:", err);
     }
   };
 
   const handlePositionChange = async (position: string) => {
-    if (position === '') {
+    if (!position) {
       setFilteredPlayers(players);
       return;
     }
     try {
-      const results = await api.getPlayersByPosition(position);
+      const results = await api.getPlayersByPosition(position); 
       setFilteredPlayers(results);
     } catch (err) {
-      console.error('Error filtering by position:', err);
+      console.error("Error filtering by position:", err);
     }
   };
 
@@ -61,7 +61,10 @@ function App() {
         <Typography variant="h3" component="h1" gutterBottom align="center">
           Fantasy Football Stats
         </Typography>
-        <SearchBar onSearch={handleSearch} onPositionChange={handlePositionChange} />
+        <SearchBar
+          onSearch={handleSearch}
+          onPositionChange={handlePositionChange}
+        />
         {error ? (
           <Typography color="error" align="center">
             {error}

@@ -1,9 +1,8 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import jakarta.persistence.DiscriminatorValue;
 
 /**
  *  Base class to represent a player in the database

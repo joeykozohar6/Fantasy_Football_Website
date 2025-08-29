@@ -1,4 +1,4 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import java.util.List;
 import java.util.Optional;

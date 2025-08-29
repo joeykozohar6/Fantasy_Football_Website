@@ -1,4 +1,4 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import java.util.Optional;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Define methods not provided by the JPA Repository
+ * Define methods not provided by the Repository
  */
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, String>{
