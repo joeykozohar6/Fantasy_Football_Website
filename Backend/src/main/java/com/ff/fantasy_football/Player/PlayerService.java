@@ -1,4 +1,4 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,7 +68,6 @@ public class PlayerService {
         if (currPlayer.isPresent()) { // can't update player that isn't in the database
             Player toBeUpdated = currPlayer.get();
             toBeUpdated.setName(player.getName());
-            toBeUpdated.setPosition(player.getPosition());
             playerRep.save(toBeUpdated);
             return toBeUpdated;
         }

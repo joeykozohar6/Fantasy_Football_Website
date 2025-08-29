@@ -1,4 +1,4 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import jakarta.persistence.*;
 
@@ -29,8 +29,8 @@ public class RunningBack extends Player {
     }
 
     // Parameterized constructor
-    public RunningBack(String name, String position, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Double rushingAttempts, Double rushingYards, Double rushingTouchdowns, Double fumblesLost, Double rushingYardsPerAttempt, Double longestRush, Double rushes20PlusYards, Double receptions, Double targets, Double receivingYards, Double yardsPerReception, Double receivingTouchdowns) {
-        super(name, position, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
+    public RunningBack(String name, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Double rushingAttempts, Double rushingYards, Double rushingTouchdowns, Double fumblesLost, Double rushingYardsPerAttempt, Double longestRush, Double rushes20PlusYards, Double receptions, Double targets, Double receivingYards, Double yardsPerReception, Double receivingTouchdowns) {
+        super(name, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
         this.rushingAttempts = rushingAttempts;
         this.rushingYards = rushingYards;
         this.rushingTouchdowns = rushingTouchdowns;

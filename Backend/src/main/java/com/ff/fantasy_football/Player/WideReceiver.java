@@ -1,4 +1,4 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import jakarta.persistence.*;
 
@@ -27,8 +27,8 @@ public class WideReceiver extends Player {
     }
 
     // Parameterized constructor
-    public WideReceiver(String name, String position, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Double rushingAttempts, Double rushingYards, Double rushingTouchdowns, Double fumblesLost, Double receptions, Double targets, Double receivingYards, Double yardsPerReception, Double receivingTouchdowns, Double longestReception, Double receptions20PlusYards) {
-        super(name, position, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
+    public WideReceiver(String name, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered, Double rushingAttempts, Double rushingYards, Double rushingTouchdowns, Double fumblesLost, Double receptions, Double targets, Double receivingYards, Double yardsPerReception, Double receivingTouchdowns, Double longestReception, Double receptions20PlusYards) {
+        super(name, gamesPlayed, fantasyPoints, fantasyPointsPerGame, percentRostered);
         this.rushingAttempts = rushingAttempts;
         this.rushingYards = rushingYards;
         this.rushingTouchdowns = rushingTouchdowns;

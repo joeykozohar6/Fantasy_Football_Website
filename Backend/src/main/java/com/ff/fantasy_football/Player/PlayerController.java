@@ -1,4 +1,4 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Class to handle http requests
- * Uses service class to preform "business logic"
+ * Uses service class to preform logic
  */
 @RestController
 @RequestMapping(path = "/player")
@@ -23,35 +23,42 @@ public class PlayerController {
     }
 
     @GetMapping
-    public List<Player> getPlayers(@RequestParam(required = false) String name, 
-                                    @RequestParam(required = false) String position) {
-        if (name != null) {
+    public List<Player> getPlayers(@RequestParam(required = false) String name,
+            @RequestParam(required = false) String position) {
+
+        //combined search (both name and position)
+        if (name != null && position != null) {
+            return playerService.getPlayerByName(name).stream()
+                    .filter(player -> position.equalsIgnoreCase(player.getPosition()))
+                     .toList();
+        } else if (name != null) {
             return playerService.getPlayerByName(name);
         } else if (position != null) {
             return playerService.getPlayerByPosition(position);
         }
-        return playerService.getAllPlayers(); // default return all players if nothing passed in
+        return playerService.getAllPlayers(); //default to all players if nothing passed in
     }
 
-    @PostMapping  
+    @PostMapping
     public ResponseEntity<Player> addPlayer(@RequestBody Player playerToAdd) {
         Player newPlayer = playerService.addPlayer(playerToAdd);
-        return new ResponseEntity<>(newPlayer, HttpStatus.CREATED); 
+        return new ResponseEntity<>(newPlayer, HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<Player> updatePlayer(@RequestBody Player playerToUpdate) {
         Player newPlayer = playerService.updatePlayer(playerToUpdate);
         if (newPlayer != null) {
-            return new ResponseEntity<>(newPlayer, HttpStatus.OK); 
+            return new ResponseEntity<>(newPlayer, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); // player not found in database
     }
 
     /**
      * Delete a player from the database
+     * 
      * @param playerName player to be deleted
-     * @return A response entity describing if the deletion was successful 
+     * @return A response entity describing if the deletion was successful
      */
     @DeleteMapping("/{playerName}")
     public ResponseEntity<String> deletePlayer(@PathVariable String playerName) {

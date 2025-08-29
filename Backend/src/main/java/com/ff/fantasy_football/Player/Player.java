@@ -1,6 +1,8 @@
-package com.ff.fantasy_football.Player;
+package com.ff.fantasy_football.player;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 /**
  *  Base class to represent a player in the database
@@ -10,14 +12,24 @@ import jakarta.persistence.*;
 @Table(name = "fantasy_football_stats")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Position", discriminatorType = DiscriminatorType.STRING)
+@JsonTypeInfo(
+  use = JsonTypeInfo.Id.NAME,
+  include = JsonTypeInfo.As.PROPERTY,
+  property = "type"
+)
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = Quarterback.class, name = "QB"),
+  @JsonSubTypes.Type(value = RunningBack.class, name = "RB"),
+  @JsonSubTypes.Type(value = WideReceiver.class, name = "WR"),
+  @JsonSubTypes.Type(value = TightEnd.class, name = "TE"),
+  @JsonSubTypes.Type(value = Kicker.class, name = "K"),
+  @JsonSubTypes.Type(value = DST.class, name = "DST")
+})
 public class Player {
     @Id
     @Column(name = "player", unique = true) //Since there aren't any repeat players
     private String name;
     
-    @Column(insertable = false, updatable = false)
-    private String position;
-
     private Integer gamesPlayed;
     private Double fantasyPoints;
     private Double fantasyPointsPerGame;
@@ -28,9 +40,8 @@ public class Player {
     }
 
     // Parameterized constructor
-    public Player(String name, String position, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered) {
+    public Player(String name, Integer gamesPlayed, Double fantasyPoints, Double fantasyPointsPerGame, Double percentRostered) {
         this.name = name;
-        this.position = position;
         this.gamesPlayed = gamesPlayed;
         this.fantasyPoints = fantasyPoints;
         this.fantasyPointsPerGame = fantasyPointsPerGame;
@@ -48,11 +59,8 @@ public class Player {
     }
 
     public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
+        jakarta.persistence.DiscriminatorValue dv = this.getClass().getAnnotation(jakarta.persistence.DiscriminatorValue.class);
+        return dv != null ? dv.value() : null;
     }
 
     public Integer getGamesPlayed() {
